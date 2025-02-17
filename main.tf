@@ -25,18 +25,19 @@ resource "aws_dynamodb_table" "notes_table" {
   }
 }
 
-resource "aws_application_autoscaling_target" "read_capacity" {
+resource "aws_appautoscaling_target" "read_capacity" {
   max_capacity       = 100
   min_capacity       = 5
-  resource_id        = "table/notes-table"
+  resource_id        = "table/${aws_dynamodb_table.tf_notes_table.name}"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
 }
 
-resource "aws_application_autoscaling_target" "write_capacity" {
+resource "aws_appautoscaling_target" "write_capacity" {
   max_capacity       = 100
   min_capacity       = 5
-  resource_id        = "table/notes-table"
+  resource_id        = "table/${aws_dynamodb_table.tf_notes_table.name}"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
   service_namespace  = "dynamodb"
 }
+
