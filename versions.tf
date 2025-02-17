@@ -17,8 +17,8 @@ terraform {
 
 # Provider Block
 provider "aws" {
-  region = "us-east-1"  # Correct region value
-  # profile = "default"  # Uncomment if using a specific AWS profile
+  region = "us-east-1"
+  version = "~> 4.0"  # Ensure this is the latest available version
 }
 
 /*
