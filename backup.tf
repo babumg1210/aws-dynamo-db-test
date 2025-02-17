@@ -28,5 +28,5 @@ resource "aws_lambda_function" "backup_handler" {
   role             = aws_iam_role.lambda_execution_role.arn
   handler          = "backup.handler"
   runtime          = "python3.8"
-  source_code_hash = filebase64sha256("backup.zip")
+  #source_code_hash = filebase64sha256("backup.zip")
 }
