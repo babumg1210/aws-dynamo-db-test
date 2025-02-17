@@ -1,27 +1,17 @@
-# Terraform Block
 terraform {
-  required_version = ">= 1.6" # which means any version equal & above 0.14 like 0.15, 0.16 etc and < 1.xx
+  required_version = ">= 1.6"  # Ensures you're using a version >= 1.6 of Terraform
+  
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 5.0"  
+      version = ">= 5.0"  # Ensure using AWS provider version 5.0 or above
     }
   }
-   # Adding Backend as S3 for Remote State Storage
+
+  # Adding Backend as S3 for Remote State Storage
   backend "s3" {
-    bucket = "mytestapplication1234"
-    key    = "terraform.tfstate"
-    region = "us-east-1"     
-  }  
+    bucket = "mytestapplication1234"  # Make sure this S3 bucket exists in your account
+    key    = "terraform.tfstate"      # The state file name
+    region = "us-east-1"              # The region where the S3 bucket is located
+  }
 }
-
-# Provider Block
-provider "aws" {
-  region = "us-east-1"
-  version = "~> 4.0"  # Ensure this is the latest available version
-}
-
-/*
-Note-1:  AWS Credentials Profile (profile = "default") configured on your local desktop terminal  
-$HOME/.aws/credentials
-*/
